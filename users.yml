@@ -1,29 +1,13 @@
 ---
 - hosts: all
-  vars:
-    users:
-      pierre:
-        state: present
-        group: claranet
-      nicolas:
-        state: present
-        group: claranet
-      jean:
-        state: absent
-        group: claranet
-      junior:
-        state: present
-        group: stagiaire
-
   tasks:
     - name: "User > Add groups"
       group:
-        name: stagiaire
+        name: "{{ group }}"
         state: present
 
     - name: "User > Add users"
       user:
-        name: "{{ item.key }}"
-        state: "{{ item.value.state }}"
-        group: "{{ item.value.group }}"
-      loop: "{{ lookup('dict', users) }}"
+        name: "{{ users }}"
+        state: "{{ state }}"
+        group: "{{ group }}"
