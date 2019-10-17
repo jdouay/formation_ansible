@@ -1,12 +1,12 @@
 ---
 - hosts: all
   tasks:
-    - name: "User > Add groups"
+    - name: "Add groups"
       group:
         name: "{{ group }}"
         state: present
 
-    - name: "User > Add users"
+    - name: "Add users"
       user:
         name: "{{ users }}"
         state: "{{ state }}"
